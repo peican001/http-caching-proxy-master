@@ -1,0 +1,7 @@
+0: "GET http://www.columbia.edu/~fdc/sample.html HTTP/1.1" from 172.19.0.1 @ Wed Mar  1 02:45:02 2023
+0: not in cache
+0: Requesting "GET http://www.columbia.edu/~fdc/sample.html HTTP/1.1" from www.columbia.edu
+0: Received "HTTP/1.1 200 OK" from www.columbia.edu
+0: NOTE Cache-Control: max-age=32764
+0: NOTE Last-Modified: Fri, 17 Sep 2021 19:26:14 GMT
+0: Responding "HTTP/1.1 200 OK"

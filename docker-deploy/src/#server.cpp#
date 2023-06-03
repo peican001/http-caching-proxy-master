@@ -1,0 +1,234 @@
+
+#include "server.hpp"
+
+#include <fcntl.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
+#include <cstring>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include "http.hpp"
+using namespace std;
+#define PORT "8080"
+void handleGet(int client_connection_fd, int to_server_fd, const char *msg, int length) {
+    send(to_server_fd, msg, length, 0);
+    std::cout << "msg sent" << endl;
+    cout << msg << endl;
+    // Response httpresponse;
+    // char response[60000];
+    // memset(response, 0, sizeof(response));
+    // std::string result;
+
+    // struct timeval tv;
+    // tv.tv_sec = 10;  // set timeout to 1 second
+    // tv.tv_usec = 0;
+
+    // do {
+    //     fd_set readfds;
+    //     FD_ZERO(&readfds);
+    //     FD_SET(to_server_fd, &readfds);
+
+    //     int retval = select(to_server_fd + 1, &readfds, NULL, NULL, &tv);
+    //     if (retval == -1) {
+    //         perror("select() error");
+    //         std::cout << "4";
+    //         close(to_server_fd);
+    //         return;
+    //     } else if (retval == 0) {
+    //         std::cout << "Timeout occurred." << endl;
+    //         close(to_server_fd);
+    //         return;
+    //     }
+
+    //     int byte_receive;
+    //     int total_received = 0;
+
+    //     byte_receive = recv(to_server_fd, response, 60000, 0);
+    //     std::cout << response << endl;
+    //     send(client_connection_fd, response, 6000, 0);
+    //     if (byte_receive == -1) {
+    //         perror("recv() error");
+    //         std::cout << "1";
+    //         break;
+    //     } else if (byte_receive == 0) {
+    //         std::cout << "2";
+    //         // connection closed by the server
+    //         break;
+    //     }
+    //     string temp(response);
+    //     result += temp;
+
+    //     // check if we have received all the expected data
+    //     // replace this with your own termination condition
+    //     // if (strstr(response, "\r\n\r\n")) {
+    //     //     break;
+    //     // }
+
+    // } while (true);
+
+}
+
+void handlePOST(int client_connection_fd, int to_server_fd, const char *msg, int length) {
+    int send_byte = send(to_server_fd, msg, length, 0);
+    std::cout << msg << endl;
+    int byte_receive;
+    char response[60000];
+    byte_receive = recv(to_server_fd, response, 60000, 0);
+    Response httpresponse;
+    httpresponse.parse(response);
+    do {
+        std::cout << "hereeeeeeeeeeeeeeeeee" << endl;
+        byte_receive = recv(to_server_fd, response, 60000, 0);
+        response[60000] = '\0';
+        std::cout << byte_receive << endl;
+        std::cout << "printing response" << endl;
+        std::cout << response << endl;
+        int byte_send = send(client_connection_fd, response, byte_receive, 0);
+    } while (byte_receive > 0);
+}
+void handleConnect(int client_connection_fd, int to_server_fd) {
+    std::cout << "method is CONNECT" << endl;
+    send(client_connection_fd, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
+    while (1) {
+        fd_set read_fds;
+        FD_ZERO(&read_fds);
+        int max_fd = to_server_fd >= client_connection_fd ? to_server_fd : client_connection_fd;
+        char message[65536];
+        fd_set tmp_fds = read_fds;
+        if (select(max_fd + 1, &tmp_fds, NULL, NULL, NULL) == -1) {
+            cerr << "Error: select failed" << endl;
+            return;
+        }
+        if (FD_ISSET(to_server_fd, &tmp_fds)) {
+            int byte_recv = recv(to_server_fd, message, 65536, 0);
+            std::cout << message << endl;
+            send(client_connection_fd, message, 65536, 0);
+            if (byte_recv == 0) {
+                break;
+            }
+        }
+        if (FD_ISSET(client_connection_fd, &tmp_fds)) {
+            int byte_recv = recv(client_connection_fd, message, 60000, 0);
+            std::cout << message << endl;
+            if (byte_recv == 0) {
+                break;
+            }
+            send(to_server_fd, message, 60000, 0);
+        }
+    }
+}
+// fd_set rResponse;
+// do {
+//     FD_ZERO(&rResponse);
+//     FD_SET(to_server_fd, &rResponse);
+//     int seleResult = select(1024, &rResponse, NULL, NULL, NULL);
+//     if (seleResult > 0) {
+//         if (FD_ISSET(to_server_fd, &rResponse)) {
+//             char responseBuffer[65536];
+//             int recvBit = recv(to_server_fd, responseBuffer, 65535, 0);  // cout << recvBit << endl;
+//             std::cout << responseBuffer << endl;
+//             if (recvBit != 0) {
+//                 string resTemp = responseBuffer;
+//                 result += resTemp;
+//             }
+//             if (recvBit < 65535) {
+//                 break;
+//             }
+//         } else if (seleResult == -1) {
+//             cerr
+//                 << "select error" << endl;
+//             return -1;
+//         } else if (seleResult == 0) {
+//             cerr << "selcet timeout" << endl;
+//             return -1;
+//         }
+//     }
+// } while (1);
+
+// cout << "printitng string" << endl;
+// cout << result << endl;
+
+// send(client_connection_fd, result.c_str(), result.size(), 0);
+void run() {
+    Server server;
+    char ptr[512];
+    int server_fd = server.init(PORT, ptr);
+    char msg[5000];
+    int num;
+    const char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nWhat the fuck!";
+    int client_connection_fd;
+    while (1) {
+        struct sockaddr_storage socket_addr;
+        socklen_t socket_addr_len = sizeof(socket_addr);
+        client_connection_fd = accept(server_fd, (struct sockaddr *)&socket_addr, &socket_addr_len);
+        if (client_connection_fd == -1) {
+            cerr << "Error: cannot accept connection on socket" << endl;
+            break;
+        }  // if
+        char msg[5000];
+        // recv request from client
+        int len = recv(client_connection_fd, msg, 5000, 0);
+        msg[5000] = '\0';
+        int length = strlen(msg);
+        Request request;
+        request.parse(msg, length);
+        Client client;
+        // extract host name from request
+        string hostname_str = request.gethost();
+        hostname_str[hostname_str.size() - 1] = '\0';
+        const char *hostname = hostname_str.c_str();
+        // connect to server
+        // use port 80
+        int to_server_fd = client.init(hostname, "80");
+        if (to_server_fd != -1) {
+            std::cout << "connection to " << hostname << " succeed" << endl;
+        }
+        // handling response from server
+        char response[60000];
+        if (strcmp(request.method.c_str(), "GET") == 0) {
+            handleGet(client_connection_fd, to_server_fd, msg, length);
+        } else if (strcmp(request.method.c_str(), "POST") == 0) {
+            handlePOST(client_connection_fd, to_server_fd, msg, length);
+        } else if (strcmp(request.method.c_str(), "CONNECT") == 0) {
+            handleConnect(client_connection_fd, to_server_fd);
+        }
+        // send(client_connection_fd, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
+
+        // fd_set readfds;
+        // int nfds = to_server_fd > client_connection_fd ? to_server_fd + 1 : client_connection_fd + 1;
+
+        // while (1) {
+        //     FD_ZERO(&readfds);
+        //     FD_SET(to_server_fd, &readfds);
+        //     FD_SET(client_connection_fd, &readfds);
+
+        //     select(nfds, &readfds, NULL, NULL, NULL);
+        //     int fd[2] = {to_server_fd, client_connection_fd};
+        //     int len;
+        //     for (int i = 0; i < 2; i++) {
+        //         char message[65536] = {0};
+        //         if (FD_ISSET(fd[i], &readfds)) {
+        //             len = recv(fd[i], message, sizeof(message), 0);
+        //             std::cout << message << endl;
+        //             if (len <= 0) {
+        //                 break;
+        //             } else {
+        //                 if (send(fd[1 - i], message, len, 0) <= 0) {
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        close(client_connection_fd);
+    }
+}
+int main(int argc, char **argv) {
+  run();
+    return 0;
+}

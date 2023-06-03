@@ -1,0 +1,16 @@
+Danger log for ECE568 hw2
+
+
+1. The major problem we dealt with when handling get request is block isssue. Because message might not be received completely at once, we need a while loop to recv message. However, this raise the problem that recv(), and select() call always block when there is no response left sent from the server. When server has already sent everything, the recv() call will keep waiting.
+
+To resolve this issue, we add more condition to make the while loop break. If the response has a content-length header, we check if the byte receive has exceed content length. If the response is a chucked message, we check weather the response we receive start with 0, if so, we send 0\r\n\r\n to the client and break the loop manually. 
+
+2. Another problem we encountered was sometimes the website for post testing has 504 Gateway Time-out, it turned out that might be caused by the website itself. Because when we try to connect the website without using proxy, we got the same message. 
+
+3. In handling Connect method, we countered the problem the select() caused block, when no more message is coming to the proxy, the select() call kept waiting forever. We solved this issue by add a 5 second timeout to the select() call. Which means, after loading a webpage, we have to wait 5 second for the program to be ready for the next page.
+
+4. After adding cache in the handling get method, the webpage were unable to load. After using gdb debugging, we realized that the program had return call when the request not in the cache, causeing the function to return immediately before sending or recving anything to the server. To solve this, we need to change the logic for handing cache. 
+
+5. When we tested the website with chucked response, the whole chucked response with unprintable characters was stored in the cache, this is because we did not check whether the response is chucked and cached the response which should not be cache
+
+6. Reading error handling, we handle the case when hostname is invalid, can not connect to the host, etc. We also consider the case when the request is invalid format. 

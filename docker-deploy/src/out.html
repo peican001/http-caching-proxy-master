@@ -1,0 +1,228 @@
+2384
+HTTP/1.1 200 OK
+Content-Type: application/ocsp-response
+Date: Thu, 23 Feb 2023 19:31:30 GMT
+Cache-Control: public, max-age=14400
+Server: ocsp_responder
+Content-Length: 471
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>All About Links</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="TextMate http://macromates.com/">
+    <meta name="author" content="Dane Groves">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://web.simmons.edu/~grovesd/comm244/css/notes.css" media="screen">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="http://web.simmons.edu/~grovesd/comm244/js/prism.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-89923459-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+
+<body>
+    <p class="backlink"><a href="../../week2">Back to Week 2 page &raquo;</a></p>
+
+    <h1>All About Links</h1>
+
+    <h2 id="dissecting_a_url">Dissecting a URL</h2>
+
+    <figure>
+        <img src="url-parts.jpg" alt="The Parts of a URL explained" />
+        <figcaption>The parts of a URL. From <em>Learning Web Design</em>, p. 24</figcaption>
+    </figure>
+
+    <ul>
+        <li><strong>Protocol:</strong> The first part of a URL is the protocol. On the web, we almost always use
+            Hypertext Transfer Protocol (HTTP) or HTTPS, which is simply a more secure version of HTTP.</li>
+        <li><strong>Host Name:</strong> The hostname points to a specific web site within a domain. Usually it is www,
+            but this is not necessarily always the case. The www is so ubiquitous that it is oftentimes left off of urls
+            to make them more clear.</li>
+        <li><strong>Domain Name:</strong> The domain name is the unique identifier of the site.</li>
+        <li><strong>Absolute Path:</strong> The absolute path tells us the path to the requested file on the web server.
+        </li>
+        <li><strong>Directory Path:</strong> This part of the URL tells us what directories the requested file is
+            contained in.</li>
+        <li><strong>Document:</strong> The last part of the URL always ends in a file name, with it's extension.</li>
+    </ul>
+
+    <p>Review pages 24-25 in <em>Learning Web Design</em> for more information.</p>
+
+
+    <h2>The a Element</h2>
+    <p>The <code>a</code> element (anchor) is used to insert links into an HTML document. The <code>a</code> element
+        wraps around the text you want to link be a link. You must use attributes to tell the link what to do.</p>
+
+    <p>The <code>a</code> element has many possible attributes. Two of the most important are <code>href</code> and
+        <code>title</code>:
+    </p>
+    <ol>
+        <li><strong>href:</strong> The location (URL) of the file you are linking to</li>
+        <li>
+            <p><strong>title:</strong> The title or a description of the linked document<br />
+                Depending on the browser, this attribute value may show as a tooltip (the content will pop up when you
+                hover your mouse cursor over it).
+        </li>
+    </ol>
+
+    <h3>Example Link</h3>
+    <p>Here in an example link to the Simmons University website.</p>
+    <pre><code class="language-markup">&lt;a href=&quot;<span class="code-attribute-value">http://www.simmons.edu/</span>&quot title=&quot;<span class="code-attribute-value">Visit the Simmons University website</span>&quot;&gt;</span>Simmons University&lt;/a&gt;</code></pre>
+
+    <h4>Exercise <i class="fas fa-map-signs"></i></h4>
+    <p>Try creating a link for each of these on your class home page. Make sure they have descriptive text and titles.
+    </p>
+    <ul>
+        <li>Create a link to the New York Times home page</li>
+        <li>Create a link to your class website</li>
+        <li>Create a link to your favorite new site</li>
+    </ul>
+
+
+    <h2>Types of links</h2>
+
+    <h3 id="absolute_urls">Absolute URLs</h3>
+
+    <p>Absolute URLs use the entire URL, including the protocol (<strong>http://</strong>), to link to a page. These are
+        usually used to link to an external site or to your home page.</p>
+
+    <p>An absolute link is created when the href value is a fully qualified URL, including:</p>
+    <ul>
+        <li>the protocol: <code>http://</code> or <code>https://</code></li>
+        <li>domain name: e.g. <code>www.yourdomain.com</code></li>
+        <li>and filename: e.g. <code>yourpage.html</code> (may be blank if you're requesting the index.html page)</li>
+    </ul>
+
+    <p>You must use absolute URLs when you are linking to an external site.</p>
+    <hr>
+
+    <h4 id="example:_absolute_urls_">Example: Absolute URLs </h4>
+    <p>To link to the Simmons website home I would use the following:</p>
+
+    <pre>
+		<code class="language-markup">&lt;a href=&quot;<mark>http://www.simmons.edu/</mark>&quot;&gt;Simmons University&lt;/a&gt;</code></pre>
+
+    <p>To link to the class home page from this page I would use the following:</p>
+
+    <pre>
+		<code class="language-markup">&lt;a href=&quot;<mark>http://web.simmons.edu/~grovesd/comm244</mark>&quot;&gt;Comm 244&lt;/a&gt;</code></pre>
+
+    <p><em>Note: In both examples, we are linking to the <code>index.html</code> page and therefore, the filename can be
+            left out.</em></p>
+
+
+    <h3 id="relative_urls">Relative URLs</h3>
+    <p>Relative URLs are used to link to a file <strong>relative</strong> to the file in which you are adding the link
+        element.</p>
+
+    <p><strong>This is where it becomes very important to understand the directory structure and filenames in your
+            website!</strong></p>
+
+    <p>Computer Filesystems:</p>
+    <ul>
+        <li>Filesystems on computers are arranged hierarchically in folders.</li>
+        <li>Each file resides inside one or more nested folders.</li>
+
+        <li>Websites work exactly the same way.</li>
+
+        <li>The top level folder of our website is referred to as the <strong>site root</strong> or simply <strong>root
+                level</strong>.</li>
+    </ul>
+
+
+    <hr>
+    <h4>Website Structure</h4>
+    <p>The image below is an illustration of the structure of a website called Recipe Book. </p>
+    <p>Let's take a minute to get familiar with this structure, since we'll be working on it a lot.</p>
+
+    <p><img src="recipebook-site-structure.png" alt="A illustration of the Recipe Book structure"></p>
+
+    <p>Recipe Book is a cooking site with tips and recipes on it. There are five top-level pages:</p>
+    <p class="alignright">
+        <strong>File view in Finder</strong><br>
+        <img width="350" src="rb-site-structure.png" alt="A screenshot of the directory structure of Recipe Book" /></a>
+    </p>
+
+    <ul>
+        <li><strong>Homepage:</strong> index.html</li>
+        <li><strong>Recipes:</strong> recipes.html</li>
+        <li><strong>Tips:</strong> tips.html</li>
+        <li><strong>About:</strong> about.html</li>
+        <li><strong>Contributors:</strong> cookware.html</li>
+    </ul>
+
+    <p><em>Note: About and Contributors are not shown in the diagram above to save space</em></p>
+
+    <p>There are also folders called recipes and tips, with pages for each contained in them.</p>
+
+    <p>The screenshot on the right shows us the directory structure of our sample website, Recipe Book.</p>
+
+
+
+
+    <hr class="clear">
+
+    <h3 id="relative_urls">Relative URLs (continued)</h3>
+    <p>To use relative URLs, we have to be able to navigate the directory structure of our sites.</p>
+
+    <p>We have to build a link by describing how to get from one html page to another.</p>
+
+    <!-- <p>When we are working with relative URLs, we use the forward slash ( <strong>/</strong> ) to designate a directory (folder). We use two periods and then a forward slash ( <strong class="addspace">../</strong> ) to move up one directory.</p> -->
+
+    We use the following symbols to describe navigating folders:
+
+    <ul>
+        <li>Go inside a folder (or down one level in the hierarchy): <mark><code> / </code></mark></li>
+        <li>Go outside a folder (or down up level in the hierarchy): <mark><code> ../ </code></mark></li>
+    </ul>
+
+    <p>Our links will consist of two parts: Path to file + file name</p>
+
+    <h3><a href="relative-links-example" title="View Relative URL Exercise">Example: Relative URLs <i
+                class="fas fa-map-signs"></i></a></h3>
+
+
+    <p><span class="definition">Root Level</span>: When we say root level or root directory, we are referring to the
+        entry level directory of a website. This directory usually contains the homepage.</p>
+    <hr>
+
+
+
+    <h2 id="giving_our_link_titles">Giving Our Links Titles</h2>
+    <p>We should always make sure to add titles to our links using the <code>title</code> attribute. The title attribute
+        gives extra information about what we are linking to. This is especially useful for screen readers.</p>
+
+    <p>Example: Linking to the Simmons College website</p>
+
+    <code>
+		<pre>&lt;a href=&quot;http://www.simmons.edu/&quot; <mark>title="View the Simmons College Website"</mark>&gt;Simmons College&lt;/a&gt;</pre>
+	</code>
+
+
+
+    <p class="backlink"><a href="../../week2">Back to Week 2 page &raquo;</a></p>
+
+</body>
+
+</html>

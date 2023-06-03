@@ -1,0 +1,137 @@
+Listening on port 12345
+Waiting for connection on port 12345
+Connecting to www.httpwatch.com on port 80...
+connection to www.httpwatch.com succeed
+msg sent
+GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1
+Host: www.httpwatch.com
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Proxy-Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cookie: _ga=GA1.2.1417004207.1677374454; _gid=GA1.2.1567527485.1677374454
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá
+Connecting to www.httpwatch.com on port 80...
+connection to www.httpwatch.com succeed
+msg sent
+GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1
+Host: www.httpwatch.com
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Proxy-Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cookie: _ga=GA1.2.1417004207.1677374454; _gid=GA1.2.1567527485.1677374454
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá
+Connecting to www.httpwatch.com on port 80...
+connection to www.httpwatch.com succeed
+msg sent
+GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1
+Host: www.httpwatch.com
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Proxy-Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cookie: _ga=GA1.2.1417004207.1677374454; _gid=GA1.2.1567527485.1677374454
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá
+HTTP/1.1 200 OK
+Content-Type: image/jpeg; charset=utf-8
+Date: Sun, 26 Feb 2023 03:52:34 GMT
+Server: Microsoft-IIS/10.0
+Cache-Control: no-cache, no-store
+Expires: -1
+Pragma: no-cache
+Trailer: X-HttpWatch-Sample
+Transfer-Encoding: chunked
+X-AspNet-Version: 4.0.30319
+X-Powered-By: ASP.NET
+Arr-Disable-Session-Affinity: True
+
+400
+ÿØÿá

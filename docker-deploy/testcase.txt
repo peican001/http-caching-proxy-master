@@ -1,0 +1,76 @@
+Testcases
+
+#########testcase1###############
+Testing chucked response
+
+0: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:51:37 2023
+0: not in cache
+0: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+0: Received "HTTP/1.1 200 OK" from www.httpwatch.com
+0: not cacheable because it is chunked
+0: Responding "HTTP/1.1 200 OK"
+
+#########testcase2###############
+Testing Connect google.com
+
+0: "CONNECT www.google.com:443 HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:46:38 2023
+0: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
+0: Responding "HTTP/1.1 200 OK"
+0: Tunnel closed
+
+#########testcase3###############
+Testing website with large unchucked response http://www.columbia.edu/~fdc/sample.html
+
+5: "GET http://www.columbia.edu/~fdc/sample.html HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:49:14 2023
+5: not in cache
+5: Requesting "GET http://www.columbia.edu/~fdc/sample.html HTTP/1.1" from www.columbia.edu
+5: Received "HTTP/1.1 200 OK" from www.columbia.edu
+5: NOTE Cache-Control: max-age=22019
+5: NOTE Last-Modified: Fri, 17 Sep 2021 19:26:14 GMT
+5: cached, expires at Wed Mar  1 05:49:14 2023
+
+#########testcase4###############
+Testing website with form
+First we have get, and then we have post request 
+
+0: "GET http://httpbin.org/forms/post HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:54:42 2023
+0: not in cache
+0: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+0: Received "HTTP/1.1 200 OK" from httpbin.org
+0: NOTE Cache-Control: max-age=21920
+0: cached, expires at Wed Mar  1 05:54:42 2023
+
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://httpbin.org/apple-touch-icon-precomposed.png HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:54:42 2023
+1: not in cache
+1: Requesting "GET http://httpbin.org/apple-touch-icon-precomposed.png HTTP/1.1" from httpbin.org
+1: Received "HTTP/1.1 404 NOT FOUND" from httpbin.org
+1: NOTE Cache-Control: max-age=21920
+1: Responding "HTTP/1.1 404 NOT FOUND"
+2: "GET http://httpbin.org/apple-touch-icon.png HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:54:43 2023
+2: not in cache
+2: Requesting "GET http://httpbin.org/apple-touch-icon.png HTTP/1.1" from httpbin.org
+2: Received "HTTP/1.1 404 NOT FOUND" from httpbin.org
+2: NOTE Cache-Control: max-age=21920
+2: Responding "HTTP/1.1 404 NOT FOUND"
+3: "POST http://httpbin.org/post HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:54:51 2023
+3: Requesting "POST http://httpbin.org/post HTTP/1.1" from httpbin.org
+3: Received "POST http://httpbin.org/post HTTP/1.1" from httpbin.org
+3: Responding "POST http://httpbin.org/post HTTP/1.1
+
+
+
+#########testcase4###############
+Testing cache
+
+0: "GET http://httpbin.org/forms/post HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:56:46 2023
+0: not in cache
+0: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+0: Received "HTTP/1.1 200 OK" from httpbin.org
+0: NOTE Cache-Control: max-age=21962
+0: cached, expires at Wed Mar  1 05:56:46 2023
+
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://httpbin.org/forms/post HTTP/1.1" from 173.95.50.147 @ Wed Mar  1 00:56:49 2023
+1: in cache, valid
+1: Responding "HTTP/1.1 200 OK"
